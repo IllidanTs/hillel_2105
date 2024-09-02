@@ -1,15 +1,21 @@
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.common.exceptions import NoSuchElementException
-from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 
+@pytest.fixture
+def driver():
+    driver = webdriver.Chrome()
+    yield driver
+    driver.quit()
+
+
 class NovaPoshtaTracking:
-    def __init__(self):
-        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    def __init__(self, driver):
+        self.driver = driver
 
     def open_tracking_page(self):
         self.driver.get("https://tracking.novaposhta.ua/#/uk")
@@ -27,26 +33,22 @@ class NovaPoshtaTracking:
         except NoSuchElementException:
             return "Посилка не знайдена або інформація недоступна"
 
-    def close_browser(self):
-        self.driver.quit()
 
-
-def test_tracking_status():
-    tracking_number = "59 0005 0122 1243"
-    expected_status = "Посилка отримана"
-    fallback_status = "Посилка не знайдена або інформація недоступна"
-
-    tracker = NovaPoshtaTracking()
+@pytest.mark.parametrize("tracking_number, expected_status", [
+    ("59 0005 0122 1243", "Посилка отримана"),
+])
+def test_tracking_status(driver, tracking_number, expected_status):
+    tracker = NovaPoshtaTracking(driver)
     tracker.open_tracking_page()
     tracker.enter_tracking_number(tracking_number)
 
     actual_status = tracker.get_tracking_status()
     print(f"Actual status: {actual_status}")
-    tracker.close_browser()
 
+    fallback_status = "Посилка не знайдена або інформація недоступна"
     assert actual_status == expected_status or actual_status == fallback_status, \
         f"Expected '{expected_status}' or '{fallback_status}', but got '{actual_status}'"
 
 
 if __name__ == "__main__":
-    test_tracking_status()
+    pytest.main()
