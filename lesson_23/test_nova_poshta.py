@@ -46,9 +46,10 @@ def test_tracking_status(driver, tracking_number, expected_status):
     print(f"Actual status: {actual_status}")
 
     fallback_status = "Посилка не знайдена або інформація недоступна"
-    assert actual_status == expected_status or actual_status == fallback_status, \
+    assert actual_status in (expected_status, fallback_status), \
         f"Expected '{expected_status}' or '{fallback_status}', but got '{actual_status}'"
 
 
 if __name__ == "__main__":
     pytest.main()
+
