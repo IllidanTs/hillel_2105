@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","4093","test_database_connection","","Tue Sep 10 22:52:26 EDT 2024","broken","Tue Sep 10 22:52:30 EDT 2024","","test_db_operations","",""
+"","4085","test_insert_data","","Tue Sep 10 22:52:30 EDT 2024","broken","Tue Sep 10 22:52:34 EDT 2024","","test_db_operations","",""
+"","4105","test_delete_data","","Tue Sep 10 22:52:42 EDT 2024","broken","Tue Sep 10 22:52:46 EDT 2024","","test_db_operations","",""
+"","4075","test_select_data","","Tue Sep 10 22:52:34 EDT 2024","broken","Tue Sep 10 22:52:38 EDT 2024","","test_db_operations","",""
+"","4086","test_update_data","","Tue Sep 10 22:52:38 EDT 2024","broken","Tue Sep 10 22:52:42 EDT 2024","","test_db_operations","",""
