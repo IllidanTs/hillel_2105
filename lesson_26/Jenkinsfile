@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    environment {
+        PYTHONPATH = "${WORKSPACE}"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                sh 'pytest --junitxml=results.xml'
+            }
+        }
+        stage('Publish Test Results') {
+            steps {
+                junit 'results.xml'
+            }
+        }
+    }
+    post {
+        always {
+            emailext (
+                to: 'InsertYour@Mail.Here',
+                subject: "Результати тестування - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """Здрастуйте,
+
+Результати тестування для завдання ${env.JOB_NAME} #${env.BUILD_NUMBER} доступні за посиланням:
+${env.BUILD_URL}
+
+З повагою,
+Jenkins
+""",
+                attachLog: true
+            )
+        }
+    }
+}
