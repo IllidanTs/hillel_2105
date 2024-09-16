@@ -1,7 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <user>
   <version>10</version>
-  <id>Illia</id>
+  <id>illia</id>
   <fullName>Illia Tsatsorin</fullName>
   <properties>
     <jenkins.console.ConsoleUrlProviderUserProperty/>
@@ -50,5 +50,11 @@
         <tokenList/>
       </tokenStore>
     </jenkins.security.ApiTokenProperty>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <roles>
+        <string>authenticated</string>
+      </roles>
+      <timestamp>1726447559055</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>

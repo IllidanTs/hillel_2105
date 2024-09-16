@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="1.022" timestamp="2024-09-15T20:53:54.489296-04:00" hostname="DESKTOP-VG2FJ8U"><testcase classname="" name="tests.test_calculator" time="0.000"><error message="collection failure">ImportError while importing test module 'D:\Папка по имени папка\Hillel\QA Automation Python\HW2\hillel_2105\hillel_2105\lesson_26\tests\test_calculator.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests\test_calculator.py:2: in &lt;module&gt;
+    from calculator import add, subtract
+E   ModuleNotFoundError: No module named 'calculator'</error></testcase></testsuite></testsuites>
